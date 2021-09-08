@@ -167,7 +167,7 @@ setMode( mode )
 	}
 	else if ( mode == "custom_public" )
 	{
-		promod_ruleset\custom_public::main();
+		promod\custom_public::main();
 		game["CUSTOM_MODE"] = 1;
 		game["PROMOD_MATCH_MODE"] = "pub";
 		game["PROMOD_MODE_HUD"] = "^4Custom ^3Public";
@@ -192,7 +192,7 @@ setMode( mode )
 	}
 	else if ( mode == "custom_public_lan" )
 	{
-		promod_ruleset\custom_public::main();
+		promod\custom_public::main();
 		game["CUSTOM_MODE"] = 1;
 		game["PROMOD_MATCH_MODE"] = "pub";
 		game["PROMOD_MODE_HUD"] = "^4Custom ^3Public";
