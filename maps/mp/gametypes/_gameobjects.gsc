@@ -322,9 +322,6 @@ giveObject( object )
 		self.carryIcon = createIcon( object.carryIcon, 50, 50 );
 		self.carryIcon setPoint( "CENTER", "CENTER", 223, 167 );
 	}
-
-	if ( isDefined( level.scorebot ) && level.scorebot )
-		level thread maps\mp\gametypes\_globallogic::updateTeamStatus();
 }
 
 returnHome()
@@ -482,9 +479,6 @@ takeObject( object )
 
 	if ( object.triggerType == "proximity" )
 		self thread pickupObjectDelay( object.trigger.origin );
-
-	if ( isDefined( level.scorebot ) && level.scorebot )
-		level thread maps\mp\gametypes\_globallogic::updateTeamStatus();
 }
 
 trackCarrier()

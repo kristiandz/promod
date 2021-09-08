@@ -388,9 +388,6 @@ onUsePlantObject( player )
 		player thread [[level.onXPEvent]]( "plant" );
 		level thread bombPlanted( self, player );
 
-		if ( isDefined( level.scorebot ) && level.scorebot )
-			game["promod_scorebot_ticker_buffer"] += "planted_by" + player.name;
-
 		logPrint("P_P;" + player getGuid() + ";" + player getEntityNumber() + ";" + player.name + "\n");
 	}
 }
@@ -411,9 +408,6 @@ onUseDefuseObject( player )
 	maps\mp\gametypes\_globallogic::givePlayerScore( "defuse", player );
 	player thread [[level.onXPEvent]]( "defuse" );
 
-	if ( isDefined( level.scorebot ) && level.scorebot )
-		game["promod_scorebot_ticker_buffer"] += "defused_by" + player.name;
-
 	logPrint("P_D;" + player getGuid() + ";" + player getEntityNumber() + ";" + player.name + "\n");
 }
 
@@ -423,9 +417,6 @@ onDrop( player )
 	{
 		if ( isDefined( player ) && isDefined( player.name ) )
 			printOnTeamArg( &"MP_EXPLOSIVES_DROPPED_BY", game["attackers"], player );
-
-		if ( isDefined( level.scorebot ) && level.scorebot && isDefined( player ) && isDefined( player.name ) )
-			game["promod_scorebot_ticker_buffer"] += "dropped_bomb" + player.name;
 	}
 
 	self maps\mp\gametypes\_gameobjects::set3DIcon( "friendly", "waypoint_bomb" );
@@ -442,9 +433,6 @@ onPickup( player )
 	{
 		if ( isDefined( player ) && isDefined( player.name ) )
 			printOnTeamArg( &"MP_EXPLOSIVES_RECOVERED_BY", game["attackers"], player );
-
-		if ( isDefined( level.scorebot ) && level.scorebot && isDefined( player ) && isDefined( player.name ) )
-			game["promod_scorebot_ticker_buffer"] += "pickup_bomb" + player.name;
 	}
 
 	playSoundOnPlayers( game["bomb_recovered_sound"], game["attackers"] );
@@ -520,9 +508,6 @@ bombPlanted( destroyedObj, player )
 		return;
 
 	level.bombExploded = true;
-
-	if ( isDefined( level.scorebot ) && level.scorebot )
-		game["promod_scorebot_ticker_buffer"] += "bomb_exploded";
 
 	explosionOrigin = level.sdBombModel.origin;
 	level.sdBombModel hide();
